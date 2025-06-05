@@ -1,0 +1,99 @@
+
+---
+
+# 機器學習專案報告：使用機器學習預測房價
+
+## 一、專案背景與動機
+
+房價是民眾與政府普遍關注的重要議題。能夠準確預測未來房價，對於購屋者、投資者與城市規劃者而言，皆具有重要參考價值。本專案透過資料分析與機器學習技術，建立一個房價預測模型，預測一個住宅的銷售價格，並探索哪些因素對房價影響最大。
+
+---
+
+## 二、資料來源與前處理
+
+### 2.1 資料來源
+
+本專案使用 Kaggle 提供的公開資料集：[House Prices - Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques)
+
+資料集包含：
+
+* 79 個房屋特徵（如：建造年份、房間數、地段、建材等）
+* 約 1460 筆訓練資料與 1459 筆測試資料
+
+### 2.2 資料前處理步驟
+
+1. **缺失值處理**：填補或刪除有缺漏的資料。
+2. **特徵工程**：
+
+   * 將類別變數進行 One-hot encoding。
+   * 對數值進行標準化（Standardization）。
+3. **特徵選擇**：
+
+   * 使用相關係數與模型評估來選擇影響房價的重要特徵（如：房屋大小、地段品質、建造年份等）。
+
+---
+
+## 三、模型選擇與訓練
+
+### 3.1 模型比較
+
+我們實作並比較了下列模型：
+
+* 線性回歸（Linear Regression）
+* 岭回歸（Ridge Regression）
+* 支持向量回歸（SVR）
+* 隨機森林回歸（Random Forest Regressor）
+* 梯度提升機（XGBoost）
+
+### 3.2 評估指標
+
+使用交叉驗證（Cross-Validation）與 RMSE（Root Mean Squared Error）作為主要評估標準。
+
+---
+
+## 四、結果與分析
+
+| 模型               | 驗證 RMSE   |
+| ---------------- | --------- |
+| 線性回歸             | 0.167     |
+| Ridge Regression | 0.129     |
+| 隨機森林回歸           | 0.122     |
+| XGBoost          | **0.114** |
+
+最終選擇 XGBoost 作為最佳模型，具有較佳的準確度與穩定性。
+
+### 特徵重要性分析（由 XGBoost 得出）
+
+前五名重要特徵為：
+
+1. OverallQual（整體施工與材料品質）
+2. GrLivArea（居住面積）
+3. GarageCars（車庫容量）
+4. TotalBsmtSF（地下室面積）
+5. YearBuilt（建造年份）
+
+---
+
+## 五、結論與未來展望
+
+### 5.1 專案成果
+
+* 成功建構可預測房價的機器學習模型。
+* 對房價影響的主要因子有清楚理解。
+* 使用 XGBoost 可獲得最佳預測表現。
+
+### 5.2 未來改進方向
+
+* 結合地理資訊（如 Google Maps API）以提升地段評估準確性。
+* 將模型部署成網頁應用（Flask + React）供使用者即時查詢。
+* 探索深度學習模型（如神經網路）是否可進一步提升準確率。
+
+---
+
+## 附錄：使用技術與工具
+
+* 語言：Python
+* 函式庫：Pandas, NumPy, Scikit-learn, XGBoost, Matplotlib, Seaborn
+* 開發環境：Jupyter Notebook
+
+
